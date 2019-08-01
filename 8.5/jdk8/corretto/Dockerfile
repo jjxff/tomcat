@@ -15,7 +15,6 @@ ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 ENV coherence.pof.enabled false \
     coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml \
     tangosol.coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml
-ADD https://github.com/jjxff/tomcat/blob/master/8.5/jdk8/corretto/coherence-cache-config.xml /usr/local/coherece/config/
 
 # see https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/KEYS
 # see also "update.sh" (https://github.com/docker-library/tomcat/blob/master/update.sh)
