@@ -2,17 +2,20 @@ FROM amazoncorretto:8
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
-RUN mkdir -p "$CATALINA_HOME"
+RUN mkdir -p "$CATALINA_HOME" && \
+    mkdir -p /usr/local/coherece && \
+    mkdir -p /usr/local/coherece/config
 WORKDIR $CATALINA_HOME
 
 # let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
-# coherence envs
-ENV coherence.pof.enabled false
-ENV coherence.cacheconfig file:/usr/local/config/coherence-cache-config.xml
-ENV tangosol.coherence.cacheconfig file:/usr/local/config/coherence-cache-config.xml
+# coherence
+ENV coherence.pof.enabled false \
+    coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml \
+    tangosol.coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml
+ADD https://github.com/jjxff/tomcat/blob/master/8.5/jdk8/corretto/coherence-cache-config.xml /usr/local/coherece/config/
 
 # see https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/KEYS
 # see also "update.sh" (https://github.com/docker-library/tomcat/blob/master/update.sh)
