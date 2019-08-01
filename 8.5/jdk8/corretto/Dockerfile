@@ -12,9 +12,9 @@ ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
 # coherence
-ENV coherence.pof.enabled false \
-    coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml \
-    tangosol.coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml
+ENV coherence.pof.enabled false 
+ENV coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml 
+ENV tangosol.coherence.cacheconfig file:/usr/local/coherece/config/coherence-cache-config.xml
 
 # see https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/KEYS
 # see also "update.sh" (https://github.com/docker-library/tomcat/blob/master/update.sh)
